@@ -1,0 +1,7 @@
+*.swo
+.vagrant/
+bin/
+etc/
+include/
+lib/
+lib64
