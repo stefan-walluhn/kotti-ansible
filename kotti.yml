@@ -40,12 +40,16 @@
     become: yes
     user: name=kotti home={{workdir}} system=yes
 
-  - name: copy kotti requirements
-    copy: dest={{workdir}}/requirements.txt src=resources/requirements.txt
+  - name: prepare buildout env
+    pip: name=zc.buildout virtualenv={{workdir}}
     become: yes
 
-  - name: install kotti
-    pip: requirements={{workdir}}/requirements.txt virtualenv={{workdir}}
+  - name: copy buildout config
+    copy: dest={{workdir}}/buildout.cfg src=resources/kotti.buildout
+    become: yes
+
+  - name: run buildout
+    command: ./bin/buildout chdir={{workdir}}
     become: yes
 
   - name: configure kotti

@@ -1,6 +1,6 @@
 [program:kotti]
 autorestart=true
-command=/srv/kotti/bin/python /srv/kotti/bin/pserve /srv/kotti/app.ini
+command=/srv/kotti/bin/gunicorn --paste app.ini
 directory=/srv/kotti
 redirect_stderr=true
 user=kotti
