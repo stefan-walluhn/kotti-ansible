@@ -1,6 +1,5 @@
 ---
 - hosts: all
-  become_user: kotti
 
   tasks:
   - name: install postgres requirements
@@ -23,26 +22,27 @@
     become: yes
     apt: name=supervisor
 
-  - name: create kotti user
+  - name: create workdir
     become_user: root
     become: yes
-    user: name=kotti home={{workdir}} system=yes
+    file: path={{workdir}} state=directory owner={{ansible_user_id}}
 
   - name: prepare buildout env
     pip: name=zc.buildout virtualenv={{workdir}}
-    become: yes
 
   - name: copy buildout config
-    copy: dest={{workdir}}/buildout.cfg src=resources/kotti.buildout
-    become: yes
+    template: dest={{workdir}}/buildout.cfg src=resources/kotti.buildout
 
   - name: run buildout
     command: ./bin/buildout chdir={{workdir}}
+
+  - name: create kotti user
+    become_user: root
     become: yes
+    user: name=kotti createhome=no system=yes shell=/usr/sbin/nologin
 
   - name: create instance dir
     file: path={{workdir}}/instances state=directory
-    become: yes
 
   - include: instance.yml instance={{instances.test}}
   - include: instance.yml instance={{instances.erdenkinder}}

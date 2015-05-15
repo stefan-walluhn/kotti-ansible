@@ -13,7 +13,6 @@
 
 - name: configure kotti
   template: dest={{workdir}}/instances/{{instance.name}}.ini src=resources/instances/{{instance.name}}.ini
-  become: yes
 
 - name: configure supervisord
   template: dest=/etc/supervisor/conf.d/kotti_{{instance.name}}.conf src=resources/kotti.supervisord

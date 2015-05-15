@@ -13,7 +13,7 @@ auto-checkout = erdenkinder
 always-checkout = true
 
 [sources]
-erdenkinder = git https://github.com/stefan-walluhn/Erdenkinder.git branch=production
+erdenkinder = git https://github.com/stefan-walluhn/Erdenkinder.git branch={{sources_branch}}
 
 [kotti]
 recipe = zc.recipe.egg
