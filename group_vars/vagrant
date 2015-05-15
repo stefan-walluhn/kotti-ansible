@@ -1,0 +1,4 @@
+---
+workdir: /srv/kotti
+database_password: foobar
+kotti_secret: qwerty
