@@ -2,7 +2,6 @@
 extensions = mr.developer
 parts =
     kotti
-    kotti_addons
 
 allow-picked-versions = false
 show-picked-versions = true
@@ -22,10 +21,6 @@ eggs =
     Kotti
     psycopg2
     gunicorn
-
-[kotti_addons]
-recipe = zc.recipe.egg
-eggs =
     kotti_blog
     kotti_gallery
     erdenkinder
