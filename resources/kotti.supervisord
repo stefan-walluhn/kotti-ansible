@@ -1,6 +1,6 @@
-[program:kotti]
+[program:kotti_{{instance.name}}]
 autorestart=true
-command={{workdir}}/bin/gunicorn --paste app.ini
+command={{workdir}}/bin/gunicorn --paste {{workdir}}/instances/{{instance.name}}.ini
 directory={{workdir}}
 redirect_stderr=true
 user=kotti

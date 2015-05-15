@@ -8,16 +8,6 @@
     become: yes
     apt: name=python-psycopg2
 
-  - name: create postgres user
-    become_user: postgres
-    become: yes
-    postgresql_user: name=kotti password={{database_password}}
-
-  - name: create postgres database
-    become_user: postgres
-    become: yes
-    postgresql_db: name=kotti encoding='UTF-8' owner=kotti
-
   - name: install virtualenv
     become_user: root
     become: yes
@@ -50,24 +40,12 @@
     command: ./bin/buildout chdir={{workdir}}
     become: yes
 
-  - name: configure kotti
-    template: dest={{workdir}}/app.ini src=resources/app.ini
+  - name: create instance dir
+    file: path={{workdir}}/instances state=directory
     become: yes
 
-  - name: configure supervisord
-    template: dest=/etc/supervisor/conf.d/kotti.conf src=resources/kotti.supervisord
-    become_user: root
-    become: yes
-
-  - name: run kotti under supervisord
-    supervisorctl: name=kotti state=restarted
-    become_user: root
-    become: yes
-
-  - name: configure nginx
-    copy: dest=/etc/nginx/sites-enabled/kotti.cfg src=resources/kotti.nginx
-    become_user: root
-    become: yes
+  - include: instance.yml instance={{instances.test}}
+  - include: instance.yml instance={{instances.erdenkinder}}
 
   - name: restart nginx
     service: name=nginx state=reloaded

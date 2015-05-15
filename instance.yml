@@ -1,0 +1,31 @@
+- name: deploy kotti instance
+  debug: msg="Instance {{instance.name}}"
+
+- name: create postgres user
+  become_user: postgres
+  become: yes
+  postgresql_user: name=kotti_{{instance.name}} password={{instance.database_password}}
+
+- name: create postgres database
+  become_user: postgres
+  become: yes
+  postgresql_db: name=kotti_{{instance.name}} encoding='UTF-8' owner=kotti_{{instance.name}}
+
+- name: configure kotti
+  template: dest={{workdir}}/instances/{{instance.name}}.ini src=resources/instances/{{instance.name}}.ini
+  become: yes
+
+- name: configure supervisord
+  template: dest=/etc/supervisor/conf.d/kotti_{{instance.name}}.conf src=resources/kotti.supervisord
+  become_user: root
+  become: yes
+
+- name: run kotti instance
+  supervisorctl: name=kotti_{{instance.name}} state=restarted
+  become_user: root
+  become: yes
+
+- name: configure nginx
+  template: dest=/etc/nginx/sites-enabled/kotti_{{instance.name}}.cfg src=resources/kotti.nginx
+  become_user: root
+  become: yes

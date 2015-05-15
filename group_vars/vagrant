@@ -1,4 +1,15 @@
 ---
 workdir: /srv/kotti
-database_password: foobar
-kotti_secret: qwerty
+instances:
+  test:
+    name: test
+    domain: test.kotti.local
+    database_password: foobaz
+    kotti_secret: qwertz
+    port: 5000
+  erdenkinder:
+    name: erdenkinder
+    domain: erdenkinder.kotti.local
+    database_password: foobar
+    kotti_secret: qwerty
+    port: 5001

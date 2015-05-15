@@ -1,11 +1,11 @@
-upstream kotti {
-    server localhost:5000;
+upstream kotti_{{instance.name}} {
+    server localhost:{{instance.port}};
 }
 
 server {
-    listen 80 default_server;
-    listen [::]:80 ipv6only=on default_server;
-    server_name kotti;
+    listen 80;
+#    listen [::]:80 ipv6only=on;
+    server_name {{instance.domain}};
  
     location / {
         proxy_set_header Host $http_host;
@@ -19,7 +19,7 @@ server {
         # Try to serve static files from nginx, no point in making an
         # *application* server like Unicorn/Rainbows! serve static files.
         if (!-f $request_filename) {
-            proxy_pass http://kotti;
+            proxy_pass http://kotti_{{instance.name}};
             break;
         }
     }
