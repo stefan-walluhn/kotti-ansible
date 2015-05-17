@@ -1,17 +1,22 @@
 ---
 workdir: /srv/kotti
 sources_branch: master
+database_root_password: foobar
 instances:
   test:
     name: test
     title: Test Instance
     domain: test.kotti.local
+    database_name: kotti_test
+    database_user: ktest
     database_password: foobaz
     kotti_secret: qwertz
     port: 5000
   erdenkinder:
     name: erdenkinder
     title: Erdenkinder
+    database_name: kotti_erdenkinder
+    database_user: kerdenkinder
     domain: erdenkinder.kotti.local
     database_password: foobar
     kotti_secret: qwerty

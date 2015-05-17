@@ -2,10 +2,10 @@
 - hosts: all
 
   tasks:
-  - name: install postgres requirements
+  - name: install mysql requirements
     become_user: root
     become: yes
-    apt: name=python-psycopg2
+    apt: name=python-mysqldb
 
   - name: install virtualenv
     become_user: root

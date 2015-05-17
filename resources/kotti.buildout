@@ -19,7 +19,7 @@ erdenkinder = git https://github.com/stefan-walluhn/Erdenkinder.git branch={{sou
 recipe = zc.recipe.egg
 eggs =
     Kotti
-    psycopg2
+    PyMySQL
     gunicorn
     kotti_blog
     kotti_gallery
@@ -36,6 +36,7 @@ MarkupSafe = 0.23
 PasteDeploy = 1.5.2
 Pillow = 2.8.1
 Pygments = 2.0.2
+PyMySQL = 0.6.6
 SQLAlchemy = 0.9.9
 Unidecode = 0.04.17
 WebOb = 1.4.1
@@ -80,7 +81,6 @@ mr.developer = 1.31
 peppercorn = 0.5
 plone.scale = 1.3.5
 polib = 1.0.6
-psycopg2 = 2.6
 py-bcrypt = 0.4
 pyramid = 1.5.7
 pyramid-beaker = 0.8

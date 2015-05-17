@@ -1,15 +1,11 @@
 - name: deploy kotti instance
   debug: msg="Instance {{instance.name}}"
 
-- name: create postgres user
-  become_user: postgres
-  become: yes
-  postgresql_user: name=kotti_{{instance.name}} password={{instance.database_password}}
+- name: create mysql database
+  mysql_db: name={{instance.database_name}} encoding='utf8' login_user=root login_password={{database_root_password}}
 
-- name: create postgres database
-  become_user: postgres
-  become: yes
-  postgresql_db: name=kotti_{{instance.name}} encoding='UTF-8' owner=kotti_{{instance.name}}
+- name: create mysql user
+  mysql_user: name={{instance.database_user}} password={{instance.database_password}} priv={{instance.database_name}}.*:ALL login_user=root login_password={{database_root_password}}
 
 - name: configure kotti
   template: dest={{workdir}}/instances/{{instance.name}}.ini src=resources/instances/{{instance.name}}.ini
