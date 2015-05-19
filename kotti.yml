@@ -46,6 +46,7 @@
 
   - include: instance.yml instance={{instances.test}}
   - include: instance.yml instance={{instances.erdenkinder}}
+  - include: instance.yml instance={{instances.t21}}
 
   - name: restart nginx
     service: name=nginx state=reloaded

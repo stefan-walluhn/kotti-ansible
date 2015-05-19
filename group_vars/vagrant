@@ -21,3 +21,12 @@ instances:
     database_password: foobar
     kotti_secret: qwerty
     port: 5001
+  terminal21:
+    name: terminal21
+    title: Test Instance
+    domain: terminal21.kotti.local
+    database_name: kotti_t21
+    database_user: kt21
+    database_password: foobaz
+    kotti_secret: qwertz
+    port: 5002

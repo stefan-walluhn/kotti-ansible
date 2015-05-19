@@ -9,11 +9,12 @@ newest = false
 versions = versions
 
 sources = sources
-auto-checkout = erdenkinder
-always-checkout = true
+auto-checkout = *
+always-checkout = force
 
 [sources]
 erdenkinder = git https://github.com/stefan-walluhn/Erdenkinder.git branch={{sources_branch}}
+kotti_t21 = git https://github.com/Terminal21/kotti_t21.git branch={{sources_branch}}
 
 [kotti]
 recipe = zc.recipe.egg
@@ -23,6 +24,7 @@ eggs =
     gunicorn
     kotti_blog
     kotti_gallery
+    kotti_t21
     erdenkinder
 
 [versions]
