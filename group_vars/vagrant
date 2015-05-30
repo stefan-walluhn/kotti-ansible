@@ -10,15 +10,23 @@ instances:
     database_name: kotti_test
     database_user: ktest
     database_password: foobaz
+    mail_default_sender: kotti@localhost
+    mail_host:
+    mail_username:
+    mail_password:
     kotti_secret: qwertz
     port: 5000
   erdenkinder:
     name: erdenkinder
     title: Erdenkinder
+    domain: erdenkinder.kotti.local
     database_name: kotti_erdenkinder
     database_user: kerdenkinder
-    domain: erdenkinder.kotti.local
     database_password: foobar
+    mail_default_sender: kotti@localhost
+    mail_host:
+    mail_username:
+    mail_password:
     kotti_secret: qwerty
     port: 5001
   terminal21:
@@ -28,5 +36,9 @@ instances:
     database_name: kotti_t21
     database_user: kt21
     database_password: foobaz
+    mail_default_sender: kotti@localhost
+    mail_host:
+    mail_username:
+    mail_password:
     kotti_secret: qwertz
     port: 5002
