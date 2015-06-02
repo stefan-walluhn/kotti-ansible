@@ -21,6 +21,6 @@
   become: yes
 
 - name: configure nginx
-  template: dest=/etc/nginx/sites-enabled/kotti_{{instance.name}}.cfg src=resources/kotti.nginx
+  template: dest=/etc/nginx/conf.d/kotti_{{instance.name}}.conf src=resources/kotti.nginx
   become_user: root
   become: yes
