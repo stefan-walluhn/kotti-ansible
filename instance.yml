@@ -10,6 +10,9 @@
 - name: configure kotti
   template: dest={{workdir}}/instances/{{instance.name}}.ini src=resources/instances/{{instance.name}}.ini
 
+- name: run database migration
+  command: ./bin/kotti-migrate instances/{{instance.name}}.ini upgrade_all chdir={{workdir}}
+
 - name: configure supervisord
   template: dest=/etc/supervisor/conf.d/kotti_{{instance.name}}.conf src=resources/kotti.supervisord
   become_user: root
