@@ -7,6 +7,15 @@
     become: yes
     apt: name=python-mysqldb
 
+  - name: install pillow requirements
+    become_user: root
+    become: yes
+    apt:
+      name: "{{ item }}"
+    with_items:
+      - libjpeg-dev
+      - zlib1g-dev
+
   - name: install virtualenv
     become_user: root
     become: yes
