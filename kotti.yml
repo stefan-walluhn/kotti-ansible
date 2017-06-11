@@ -5,7 +5,11 @@
   - name: install mysql requirements
     become_user: root
     become: yes
-    apt: name=python-mysqldb
+    apt:
+      name: "{{ item }}"
+    with_items:
+      - libmysqlclient-dev
+      - python-mysqldb
 
   - name: install pillow requirements
     become_user: root
