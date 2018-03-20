@@ -8,7 +8,7 @@
     apt:
       name: "{{ item }}"
     with_items:
-      - libmysqlclient-dev
+      - libmariadbclient-dev
       - python-mysqldb
 
   - name: install pillow requirements

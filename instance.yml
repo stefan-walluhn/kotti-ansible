@@ -2,10 +2,14 @@
   debug: msg="Instance {{instance.name}}"
 
 - name: create mysql database
-  mysql_db: name={{instance.database_name}} encoding='utf8' login_user=root login_password={{database_root_password}}
+  mysql_db: name={{instance.database_name}} encoding='utf8'
+  become_user: root
+  become: yes
 
 - name: create mysql user
-  mysql_user: name={{instance.database_user}} password={{instance.database_password}} priv={{instance.database_name}}.*:ALL login_user=root login_password={{database_root_password}}
+  mysql_user: name={{instance.database_user}} password={{instance.database_password}} priv={{instance.database_name}}.*:ALL
+  become_user: root
+  become: yes
 
 - name: configure kotti
   template: dest={{workdir}}/instances/{{instance.name}}.ini src=resources/instances/{{instance.name}}.ini

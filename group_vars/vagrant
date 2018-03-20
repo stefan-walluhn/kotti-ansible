@@ -19,7 +19,7 @@ instances:
   erdenkinder:
     name: erdenkinder
     title: Erdenkinder
-    domain: erdenkinder.kotti.local
+    domain: erdenkinder.127.0.0.1.xip.io
     database_name: kotti_erdenkinder
     database_user: kerdenkinder
     database_password: foobar
